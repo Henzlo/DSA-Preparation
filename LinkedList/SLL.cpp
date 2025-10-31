@@ -57,6 +57,46 @@ void insertAtHead(Node* &head, int d){
 
 }
 
+//function to insert node at tail
+void insertAtTail(Node* &tail, int d){
+
+    Node* newNode = new Node(d);
+    tail -> next = newNode;
+    tail = newNode;
+
+}
+
+void insertAtPosition(Node* &head, Node* &tail, int position, int d){
+    
+    //insert if no Node is present
+    if(head == NULL){
+        insertAtHead(head, d);
+        return;
+    }
+
+    //insert at last Node
+    if(head -> next == NULL){
+        insertAtTail(tail, d);
+        return;
+    }
+
+    //create cnt to traverse to that position 
+    Node* temp = head;
+    int cnt = 1;
+
+    while(cnt < position-1){
+        temp = temp -> next;
+        cnt++;
+    
+    }
+
+    Node* newNode = new Node(d);
+    newNode -> next = temp -> next;
+    temp -> next = newNode;
+
+
+}
+
 
 int main(){
     
@@ -67,7 +107,12 @@ int main(){
     Node* tail = node1;
 
     insertAtHead(head, 20);
+    insertAtTail(tail, 30);
+    insertAtTail(tail, 40);
+    insertAtTail(tail, 50);
+    insertAtPosition(head, tail, 5, 55);
     print(head);
 
+    //20 10 30 40 50 
     
 }
