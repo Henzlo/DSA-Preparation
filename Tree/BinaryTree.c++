@@ -74,7 +74,7 @@ void levelOrder(Node* root){
     // level 3 -> [4 5 6 7]
     vector<vector<int>> ans;
 
-    if(root == NULL) return ans;
+    if(root == NULL) return;
 
     //Create Queue to store the element|node of type Node*
     queue<Node*> q;
@@ -101,12 +101,16 @@ void levelOrder(Node* root){
             if(front -> left != NULL) q.push(front -> left);
             if(front -> right != NULL) q.push(front -> right);
 
-            //store the current level in the answer vector
-            ans.push_back(level);
+        }   
 
-        }
+        //store the current level in the answer vector
+        ans.push_back(level);
+    }
 
-        return ans;
+    cout << " ";
+    for(auto &level: ans){
+        for(int ele: level)
+        cout << ele << " ";
     }
     
 }
@@ -117,7 +121,12 @@ int main(){
     root -> left = new Node(2);
     root -> right = new Node(3);
 
+    root -> left -> left = new Node(4);
     root -> left -> right = new Node(5);
+    
+    root -> right -> left = new Node(6);
+    root -> right -> right = new Node(7);
+
 
     cout << "\n InOrder: ";
     recursiveInorder(root);
@@ -127,9 +136,11 @@ int main(){
     recursivePostOrder(root);
 
     cout << endl;
+
+    levelOrder(root);
     
     //It calls the destructor ~Node() for the Node which is pointed ny root before freeing the memory.
-    delete root;
+    // delete root;
 
 
 }
