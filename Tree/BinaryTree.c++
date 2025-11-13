@@ -149,14 +149,16 @@ void iterativeInOrder(Node* root){
     Node* node = root;
 
     while(true){
-
+        //if node is not null, then push to stack and move to left
         if(node != NULL){
             s.push(node);
             node = node -> left;
         }
         else{
+            //if stack is empty do nothing
             if(s.empty() == true) break;
 
+            //take top of stack and push it into inorder and move to right
             node = s.top();
             s.pop();
             inorder.push_back(node -> val);
